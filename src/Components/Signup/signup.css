@@ -1,0 +1,71 @@
+/* ///////////////////// Sign up start//////////////// */
+.signup .bgshape1{
+    width: 50%;
+    position: absolute;
+    top: 0;
+    right: -100px;
+    z-index: -1;
+    height: 100vh;
+   }
+   
+   .signup .bgshape2{
+       width: 15%;
+       position: absolute;
+       bottom: 0;
+       left: 0;
+       z-index: -1;
+      }
+   
+   
+   .items{
+       display: flex;
+       justify-content: center;
+       width: 100%;
+       padding-top: 50px;
+   }
+   .image {
+       margin-top: 50px;
+       width: 60%;
+       position: relative;
+   
+   }
+   
+   .manshape{
+       position: absolute;
+       width: 600px;
+       right: 40px;
+       height: auto;
+       top: 50%;
+       left: 0;
+       transform: translatey(-50%);
+   }
+   .forms{
+       width: 40%;
+       height: 100%;
+     padding-top: 70px;
+    margin-left: 70px;
+   box-sizing: border-box;
+   }
+   .form{
+       padding:0px 30px;
+   }
+   
+   
+   .ui.form .field{
+     margin-top: 25px!important;
+   }
+   
+   .forms button{
+       margin-top: 20px!important;
+   }
+
+
+   .formhide{
+       display: none;
+   }
+
+   .sucShow{
+       display: block!important;
+       width: 100%;
+       height: 100%;
+   }

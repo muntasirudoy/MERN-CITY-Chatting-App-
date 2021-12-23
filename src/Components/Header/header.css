@@ -1,0 +1,28 @@
+
+.logo__head{
+    width: 25%;
+    height: 25%;
+}
+.logo__head img{
+    width: 100%;
+    flex-direction: column;
+}
+.ui.center.aligned.header, .ui.centered.header {
+   margin-top: 0;
+}
+
+.ui.positive.button {
+    background-color: rgb(43, 196, 138)!important;
+}
+
+.ui.negative.button {
+    background-color: rgb(255, 95, 74)!important;
+}
+
+.logout{
+    display: none;
+}
+
+.ui.buttons {
+    margin-top: 12px!important;
+}
