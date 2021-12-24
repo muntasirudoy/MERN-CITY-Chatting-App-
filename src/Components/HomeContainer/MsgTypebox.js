@@ -19,11 +19,10 @@ sendMessage=()=>{
     this.setState({ message:''})
     if(this.state.message){
         const db =database
-        const msgref = ref(db, 'messages')
+        const msgref = ref(db, 'messages/')
         const newmsgref = push(child(msgref, `${this.props.groupid}`))
         set(newmsgref,{
             message: this.state.message,
-            date:Date(),
             sender: this.props.userid,
             gpid:this.props.groupid
             
@@ -55,7 +54,7 @@ sendMessage=()=>{
                                         name='message'
                                         onChange={this.handalechange}
                                         />
-                                        <Icon type='submit' name="paper plane" size='big' color='teal' style={{ border:"none!important", cursor:"pointer"}}> </Icon>
+                                        <Icon type='submit' name="paper plane" size='big' color='teal' style={{ border:"none!important", cursor:"pointer", marginTop:"10px"}}>  </Icon>
                                     </Form.Group>
                                 </Form>
                         

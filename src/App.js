@@ -13,22 +13,31 @@ import {auth} from './firebase'
  class App extends Component{
 
   state={
-    status:false
+    status:false,
+    isloading: true 
 }
 
-componentDidMount(){                                  //check user is logged or not
+componentDidMount(){   
+                              //check user is logged or not
     auth.onAuthStateChanged((user)=>{
         if(user){
            this.setState({status:true}) 
+           this.setState({isloading:false}) 
+
         }
         else{
             this.setState({status:false})
+            this.setState({isloading:false}) 
         }
     })
+
 }
 
   render(){
-    const{status}= this.state
+    const{status,isloading}= this.state
+    if (isloading){
+      return 'loading...'
+    }
     return(
      <>
   

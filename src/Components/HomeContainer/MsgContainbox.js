@@ -1,3 +1,4 @@
+import { onValue } from 'firebase/database';
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { database, ref, onChildAdded, onChildChanged} from "../../firebase";
@@ -9,50 +10,41 @@ import { database, ref, onChildAdded, onChildChanged} from "../../firebase";
   }
 
   componentDidUpdate(previous){
-    // console.log(previous)
-    // console.log(this.props.groupid)
+    
+    // console.log(this.props.groupInfo)
     let msgarr=[]
+    
     const db= database;
-    const msgref = ref(db, 'messages/')
-    onChildAdded(msgref, data=>{
-       msgarr=[]
-        data.forEach(items => {
-          msgarr.push(items.val())
-        });
-        if(previous.groupInfo){
-          if(previous.groupInfo.groupname !== this.props.groupInfo.groupname){
-            this.setState({message:msgarr})
-          }
-        }
-        else{
-          this.setState({message:msgarr})
-        }
+    const msgref = ref(db, 'messages')
+
+    onValue(msgref,  data=>{
+      msgarr=[]
+      data.forEach(items => {
+              msgarr.push(items.val())
+              
+            });
+            if(previous.groupInfo){
+                    if(previous.groupInfo.groupname!== this.props.groupInfo.groupname ){
+                      this.setState({message:msgarr})
+                    }
+                  }
+                  else{
+                    this.setState({message:msgarr})
+                  }
+
+                  console.log()
     })
 
-    onChildChanged(msgref, data=>{
-       msgarr=[]
-      data.forEach(items => {
-        msgarr.push(items.val())
-      });
-      if(previous.groupInfo){
-        if(previous.groupInfo.groupname !== this.props.groupInfo.groupname){
-          this.setState({message:msgarr})
-        }
-      }
-      else{
-        this.setState({message:msgarr})
-      }
-  })
 
 
+    
+       
   }
 
 
-
-
-
-
     render() {
+     
+   
       const {groupid,userid} = this.props
       return (
 
@@ -60,15 +52,24 @@ import { database, ref, onChildAdded, onChildChanged} from "../../firebase";
             <div className='msgbox'>
              <div className='startbottom'>
              
-                  {
-                    this.state.message.map(data=>(
-                       
-                      <div className={userid == data.sender ? 'msgright' : 'msgleft'} >
-                         <p>{data.message} </p> 
+                  {this.state.message.map(data=>(
+                
+                      
+                      Object.entries(data).map(data=>(
+                        
+                         data[1].gpid== groupid ? 
+                        <div className={userid == data[1].sender ? 'msgright' : 'msgleft'} >
+                         <p>{data[1].message} </p> 
                       </div>
-                   
+                      :
+                      ""
+
+
+
                       ))
-                  }
+                  
+                  
+                  ))}
 
              </div>
            </div>
@@ -89,3 +90,8 @@ const mapStateToProps =(state)=>({
 )
 
 export default connect(mapStateToProps, {})(MsgContainbox)
+
+
+  // <div className={userid == data.sender ? 'msgright' : 'msgleft'} >
+                      //    <p>{data.message} </p> 
+                      // </div>

@@ -51,14 +51,22 @@ submitgroup =()=>{
     
 }
 
+
+
+
+
+
+
+
 // realtime data READ............
 componentDidMount(){
     this.loadData()
+
 }
 
 loadData =()=>{
     let groupdata= []
-    const starCountRef = ref(database, 'groups/' );
+    const starCountRef = ref(database, 'groups' );
     onValue(starCountRef, (snapshot) => {
         if(snapshot){
             snapshot.forEach(data =>{   
@@ -71,7 +79,9 @@ loadData =()=>{
          groupdata.push(groupinfo)
             })
             this.setState({groupdata:groupdata}, this.defaultgroup)
+            
         }
+        groupdata= []
     });
 }
 
@@ -79,10 +89,11 @@ defaultgroup=()=>{
     let firstgroup = this.state.groupdata[0]
     if(this.state.load && this.state.groupdata.length > 0){
        this.props.setgroups(firstgroup)
+       this.setState({load: false})
+       this.setState({active:firstgroup.id})
     }
     
-    this.setState({load: false})
-    this.setState({active:firstgroup.id})
+    
     
 }
 
@@ -94,8 +105,13 @@ defaultgroup=()=>{
 // SEND REALTIME DATA TO REDUX 
 
             groupdata=(groups)=>{
-                this.setState({active:groups.id})
-                this.props.setgroups(groups)
+                if(this.state.groupname.length >=0 ){
+                    this.setState({active:groups.id})
+                     this.props.setgroups(groups)
+                }
+                else{
+                    return 'error'
+                }
             }
 
 // SEND REALTIME DATA TO REDUX 
@@ -168,7 +184,7 @@ defaultgroup=()=>{
 }
 
 const active={
-    background: "rgb(370, 370, 370)",
+    background: "#e6f2ff",
     color:"#ffffff",
     borderRadius:'10px',
     transition:'0.2s',

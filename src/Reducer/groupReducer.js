@@ -1,7 +1,7 @@
 import * as alltypes from "../Actions/allTypes"
 
 const initialstate ={
-    currentGroup:null
+    currentGroup:null,currentGroupid :null,grpname:null
 }
 
  const groupReducer =(state = initialstate, action)=>{
@@ -14,7 +14,6 @@ const initialstate ={
             currentGroupid : action.payload.currentgroup.id,
             grpname : action.payload.currentgroup.groupname,
         }
-     
         default : return state
     }
 }

@@ -14,6 +14,7 @@ class GroupInfo extends Component {
   }
 
   render(props) {
+
     const { activeIndex } = this.state
 
     return (
@@ -21,7 +22,7 @@ class GroupInfo extends Component {
         <Card>
         <Card.Content style={{textAlign:"center",padding:"25px 0px"}}>
         <Icon color='grey' circular name='users' size='big' />
-        <Card.Header style={{textAlign:"center",fontSize:"25px", marginTop:"10px"}}>{this.props.grpname}</Card.Header>
+        <Card.Header style={{textAlign:"center",fontSize:"25px", marginTop:"10px"}}>{this.props.groupInfo?.displayName}</Card.Header>
         <Card.Meta >
              Group Headline Here
         </Card.Meta>
