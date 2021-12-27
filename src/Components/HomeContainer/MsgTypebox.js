@@ -7,7 +7,8 @@ class MsgTypebox extends Component {
 
     state={
        message: '',
-       error: false 
+       error: false,
+       isimage: false
     }
 
 handalechange=(e)=>{
@@ -35,16 +36,33 @@ sendMessage=()=>{
     }
 }
 
+showimage=()=>{
+    this.setState({isimage:true})
+    console.log('done')
+}
+
+closeimage=()=>{
+    this.setState({isimage:false})
+    console.log('done')
+}
 
 
     render() {
 // console.log(this.props.userid)
         return (
             
+            <>
+                   
                    <div className='msg-write'>
-                        <Icon name="image" size='large' color='teal'style={{ border:"none!important", cursor:"pointer"}}> </Icon>
+                        <div className={this.state.isimage ? 'dropdown' : 'dropup'} style={{width:"100px", height:"100px",transition:"0.5s", position:"absolute",top:"-150px",height:"150px",width:"100%"}}> 
+                           <Input color="red"  type="file" />
+                           <Icon onClick={this.closeimage} style={{marginLeft:"20px",cursor:"pointer"}} name="paper plane" size='big' color='teal'> </Icon>
+
+                        </div>
+                        <Icon onClick={this.showimage}  name="image" size='large' color='teal'style={{ border:"none!important", cursor:"pointer"}}> </Icon>
                         <Icon name="attach" size='large' color='teal' style={{ border:"none!important", cursor:"pointer"}}> </Icon>
                         <Icon name="microphone" size='large'color='teal' style={{ border:"none!important", cursor:"pointer"}}> </Icon>
+                        
                             
                             <Form  onSubmit={this.sendMessage}  >
                                  <Form.Group>
@@ -59,6 +77,7 @@ sendMessage=()=>{
                                 </Form>
                         
                     </div>
+            </>        
         )
     }
 

@@ -164,6 +164,14 @@ width: 100%;
     padding: 5px 15px;
 }
 
-.startbottom{
- 
+.dropup{
+    display: none;
+}
+.dropdown{
+  display: block;
+  transition: 0.5s;
+  background:rgba(1, 0, 46, 0.76);
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

@@ -53,24 +53,15 @@ import { database, ref, onChildAdded, onChildChanged} from "../../firebase";
              <div className='startbottom'>
              
                   {this.state.message.map(data=>(
-                
-                      
-                      Object.entries(data).map(data=>(
-                        
+                      Object.entries(data).map(data=>( 
                          data[1].gpid== groupid ? 
                         <div className={userid == data[1].sender ? 'msgright' : 'msgleft'} >
                          <p>{data[1].message} </p> 
                       </div>
                       :
                       ""
-
-
-
-                      ))
-                  
-                  
+                      ))          
                   ))}
-
              </div>
            </div>
          
